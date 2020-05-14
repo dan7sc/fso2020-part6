@@ -7,6 +7,12 @@ const App = () => {
 
   const vote = (id) => {
     console.log('vote', id)
+
+    const action = {
+      data: { id },
+      type: 'VOTE_ANECDOTE'
+    }
+    dispatch(action)
   }
 
   return (
