@@ -8,10 +8,16 @@ import {
 
 const AnecdoteList = () => {
   const anecdotes = useSelector(state => state.anecdotes)
+  const filter = useSelector(state => state.filter)
   const dispatch = useDispatch()
+
+  const filteredAnecdotes = anecdotes.filter(
+    anecdote => anecdote.content.toLowerCase().includes(filter)
+  )
 
   const vote = (id) => {
     console.log('vote', id)
+
     const votedAnecdote = anecdotes.find(anecdote => anecdote.id === id)
     const message = `you vote '${votedAnecdote.content}'`
 
@@ -24,7 +30,7 @@ const AnecdoteList = () => {
 
   return (
     <div>
-      {anecdotes
+      {filteredAnecdotes
        .sort((firstItem, secondItem) => {
          return secondItem.votes - firstItem.votes
        })
