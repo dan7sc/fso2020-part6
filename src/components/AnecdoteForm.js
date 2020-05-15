@@ -18,9 +18,7 @@ const AnecdoteForm = () => {
 
     const message = `added '${content}' anecdote`
 
-    const newAnecdote = await anecdoteService.createNew(content)
-
-    dispatch(createAnecdote(newAnecdote))
+    dispatch(createAnecdote(content))
     dispatch(showNotification(message))
     setTimeout(() => {
       dispatch(removeNotification())
