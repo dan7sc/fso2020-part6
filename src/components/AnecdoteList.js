@@ -3,7 +3,12 @@ import { connect } from 'react-redux'
 import { addVote } from '../reducers/anecdoteReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
-const AnecdoteList = ({ anecdotes, filter }) => {
+const AnecdoteList = ({
+  anecdotes,
+  filter,
+  addVote,
+  setNotification
+}) => {
   const filteredAnecdotes = anecdotes.filter(
     anecdote => anecdote.content.toLowerCase().includes(filter)
   )
@@ -50,4 +55,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(AnecdoteList)
+const mapDispatchToProps = {
+  addVote,
+  setNotification
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AnecdoteList)
